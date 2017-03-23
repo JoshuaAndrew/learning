@@ -2,7 +2,7 @@ package labs22
 
 import "testing"
 
-import "labs22/mylib"
+import "github.com/JoshuaAndrew/learning/std/test/labs22/mylib"
 
 func Test_Go_Call_C(t *testing.T) {
 	mylib.Call(1)
