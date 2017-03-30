@@ -6,8 +6,7 @@ import (
 	"sort"
 
 	"github.com/urfave/cli"
-	"github.com/sirupsen/logrus"
-	"github.com/nats-io/go-nats"
+	"github.com/Sirupsen/logrus"
 )
 
 func main() {
