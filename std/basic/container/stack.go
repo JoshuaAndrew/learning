@@ -42,7 +42,7 @@ func (s *Stack) Size() int {
 }
 
 //是否为空
-func (s *Stack)Empty() (bool) {
+func (s *Stack) IsEmpty() (bool) {
 	if s.Size() == 0 {
 		return true
 	} else {
@@ -55,9 +55,11 @@ func main() {
 	s := NewStack()
 	for i := 0; i < 10; i++ {
 		s.Push(i)
-		s.Push("v")
 	}
-	fmt.Println(s.Size(),s.Empty(),s.value)
-	s.Pop()
-	fmt.Println(s.Size(),s.Empty(),s.value)
+	fmt.Println(s.Size(),s.IsEmpty(),s.value)
+	s.Pop()         //
+	fmt.Println(s.Size(),s.IsEmpty(),s.value)
+	s.Top()
+	fmt.Println(s.Size(),s.IsEmpty(),s.value)
+
 }

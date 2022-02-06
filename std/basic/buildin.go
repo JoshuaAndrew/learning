@@ -87,7 +87,8 @@ import (
 
 
 const (
-	Monday = iota
+	_         = iota
+	Monday
 	Tuesday
 	Wednesday
 	Thursday

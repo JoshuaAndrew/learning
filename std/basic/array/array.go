@@ -10,7 +10,7 @@ import (
 Array:
 
 定义数组的格式: var <varName> [n]Type, n>=0
-数组长度也是数组的一部分，因此具有不同长度的数组为不同类型
+数组长度也是数组的一部分，因此具有不同长度的数组为不同类型  [2]int [3]int
 可以使用new创建数组,此方法返回一个指向数组的指针
 golang 支持多维数组
 
@@ -109,7 +109,7 @@ func slice() {
 	crv := reflect.ValueOf(c)
 	fmt.Println(b, brv.Kind()) //[0 1 2 3 4 5 6 7 8 9] array
 	fmt.Println(c, crv.Kind()) //[5 6 7 8 9] slice
-	fmt.Println(d, e, be, x)
+	fmt.Println(d, e, x, be)
 
 	f := make([]interface{}, 0, 20) //定义一个初始容量是20的空slice，每当slice长度达到容量限制时，容量自动加倍
 	fmt.Println(f, len(f), cap(f))
@@ -119,15 +119,19 @@ func slice() {
 		fmt.Println(len(f), cap(f), f)
 	}
 
-	g := [...]int{1, 2, 3, 4, 5, 6, 7}//如果多个slice指向相同底层数组，其中一个的值改变会影响全部slice
+	g := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8}//如果多个slice指向相同底层数组，其中一个的值改变可能会影响很多slice
+	fmt.Println(g,reflect.ValueOf(g).Kind())  //[0 1 2 3 4 5 6 7 8] array
 	s1 := g[2:7]
 	s2 := g[1:3]
-	fmt.Println(s1, s2) //[3 4 5 6 7] [2 3]
+	fmt.Println(s1, s2) //[2 3 4 5 6] [1 2]
 	s1[0] = 100
-	fmt.Println(s1, s2) //[100 4 5 6 7] [2 100]
+	//s2[1] = 100
+	fmt.Println(s1, s2) //[100 3 4 5 6] [1 100]
+	fmt.Println(g,reflect.ValueOf(g).Kind()) //[0 1 100 3 4 5 6 7 8] array
 	fmt.Println("====================Slice============================")
 
 	h := [...]int{1, 2, 3, 4, 5, 6, 7}//如果多个slice指向相同底层数组，其中一个的值改变会影响全部slice
+	fmt.Println(reflect.ValueOf(h).Kind())
 	s11 := h[2:7]
 	s22 := h[1:3]
 	fmt.Println(s11, s22) //[3 4 5 6 7] [2 3]
@@ -143,7 +147,7 @@ func slice() {
 	//func copy(dst, src []Type) int
 	var i = []int{1, 2, 3, 4, 5, 6, 7}
 	var j = []int{8, 9, 10}
-	num := copy(i, j)
+	num := copy(i, j)  //copy直接覆盖destination slice 元素，并不会追加
 	fmt.Println(num, i, j)
 
 	var i1 = []int{1, 2, 3, 4, 5, 6, 7}

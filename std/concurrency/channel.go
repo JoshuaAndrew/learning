@@ -12,12 +12,12 @@ func main() {
 	fmt.Println("Begin doing something!")
 	c := make(chan int)
 	go func() {
-		time.Sleep(2 * time.Second)
+		time.Sleep(10 * time.Second)
 		fmt.Println("Doing something…")
 		c <- 234
 		close(c)
 	}()
-	fmt.Println("I am Undone!")
+	fmt.Println("goroutine is Undone!,waiting")
 
 	r, ok := <-c
 	fmt.Println("Done!",r,ok)
